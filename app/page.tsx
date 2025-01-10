@@ -27,18 +27,23 @@ export default async function Home() {
         .meter {
           width: 250px;
           height: 125px;
-          overflow: hidden;
+          position: relative;
         }
         
-        .meter-arc,
+        .meter-arc {
+          width: 100%;
+          height: 100%;
+        }
+        
         .meter-color-left,
         .meter-color-right {
-          transform-origin: bottom center;
-          transform: scale(0.833);
+          width: 100%;
+          height: 100%;
         }
         
         .meter-pointer {
           transform-origin: bottom center;
+          bottom: 0;
         }
         
         .components {
