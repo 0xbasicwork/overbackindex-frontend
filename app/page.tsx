@@ -1,7 +1,7 @@
 async function getData() {
   try {
-    const res = await fetch('http://45.76.10.9:3000/api/index', {
-      next: { revalidate: 3600 }, // Revalidate every hour
+    const res = await fetch('/api/index', {
+      next: { revalidate: 3600 },
     });
 
     if (!res.ok) throw new Error('Failed to fetch data');
