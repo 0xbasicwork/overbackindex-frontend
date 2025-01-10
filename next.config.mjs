@@ -9,6 +9,16 @@ const nextConfig = {
         destination: 'http://45.76.10.9:3000/:path*'
       }
     ];
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' }
+        ],
+      },
+    ];
   }
 };
 
