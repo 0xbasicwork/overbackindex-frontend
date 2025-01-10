@@ -1,13 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/overbackindex',
-  output: 'standalone',
-  typescript: {
-    ignoreBuildErrors: true
-  },
-  eslint: {
-    ignoreDuringBuilds: true
-  }
+  output: 'standalone'
 };
 
 export default nextConfig; 
