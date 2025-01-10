@@ -1,7 +1,9 @@
+export const dynamic = 'force-dynamic';
+
 async function getData() {
   try {
     const res = await fetch('http://45.76.10.9:3000/api/index', {
-      next: { revalidate: 3600 }
+      cache: 'no-store'
     });
 
     if (!res.ok) throw new Error('Failed to fetch data');
