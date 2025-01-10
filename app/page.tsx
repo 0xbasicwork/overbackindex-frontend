@@ -1,6 +1,10 @@
 async function getData() {
   try {
-    const res = await fetch('/api/index', {
+    const baseUrl = process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}/overbackindex` 
+      : 'http://localhost:3000/overbackindex';
+    
+    const res = await fetch(`${baseUrl}/api/index`, {
       next: { revalidate: 3600 },
     });
 
