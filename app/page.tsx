@@ -3,13 +3,21 @@ export const dynamic = 'force-dynamic';
 async function getData() {
   try {
     const res = await fetch('http://45.76.10.9:3000/', {
-      cache: 'no-store'
+      cache: 'no-store',
+      headers: {
+        'Accept': 'application/json'
+      }
     });
 
-    if (!res.ok) throw new Error('Failed to fetch data');
-    return res.json();
+    if (!res.ok) {
+      console.error('API Error:', await res.text());
+      return null;
+    }
+
+    const data = await res.json();
+    return data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Fetch Error:', error);
     return null;
   }
 }
@@ -18,7 +26,12 @@ export default async function Home() {
   const data = await getData();
   
   if (!data) {
-    return <div>Loading...</div>;
+    return (
+      <div className="container">
+        <h1>OVER/BACK Index</h1>
+        <p>Error loading index data. Please try again later.</p>
+      </div>
+    );
   }
 
   return (
