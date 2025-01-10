@@ -2,10 +2,10 @@ export const dynamic = 'force-dynamic';
 
 async function getData() {
   try {
-    const res = await fetch('http://45.76.10.9:3000/', {
+    const res = await fetch('http://45.76.10.9:3000', {
       cache: 'no-store',
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'text/html'
       }
     });
 
@@ -14,8 +14,8 @@ async function getData() {
       return null;
     }
 
-    const data = await res.json();
-    return data;
+    const text = await res.text();
+    return text;
   } catch (error) {
     console.error('Fetch Error:', error);
     return null;

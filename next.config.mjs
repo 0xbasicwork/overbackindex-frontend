@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: 'http://45.76.10.9:3000/',
+        destination: 'http://45.76.10.9:3000',
         basePath: true
       }
     ];
