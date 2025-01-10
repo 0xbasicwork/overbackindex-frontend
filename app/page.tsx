@@ -5,7 +5,7 @@ async function getData() {
     const res = await fetch('http://45.76.10.9:3000', {
       cache: 'no-store',
       headers: {
-        'Accept': 'text/html'
+        'Accept': 'application/json'
       }
     });
 
@@ -14,8 +14,8 @@ async function getData() {
       return null;
     }
 
-    const text = await res.text();
-    return text;
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.error('Fetch Error:', error);
     return null;
