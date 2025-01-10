@@ -8,8 +8,16 @@ export default async function Home() {
 
     const html = await res.text();
     
+    // Extract the CSS link from the HTML
+    const cssLink = html.match(/<link rel="stylesheet" href="(\/css\/styles\.css)">/)?.[1];
+    const cssRes = await fetch(`http://45.76.10.9:3000${cssLink}`);
+    const css = await cssRes.text();
+    
     return (
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <>
+        <style dangerouslySetInnerHTML={{ __html: css }} />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </>
     );
   } catch (error) {
     return (
