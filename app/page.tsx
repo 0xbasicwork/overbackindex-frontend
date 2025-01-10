@@ -13,9 +13,42 @@ export default async function Home() {
     const cssRes = await fetch(`http://45.76.10.9:3000${cssLink}`);
     const css = await cssRes.text();
     
+    // Add mobile-responsive CSS
+    const mobileCSS = `
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+        
+        h1 {
+          font-size: 2rem;
+        }
+        
+        .meter {
+          width: 250px;
+          height: 125px;
+        }
+        
+        .components {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .component {
+          width: 100%;
+          margin: 0;
+        }
+        
+        .bar-container {
+          margin: 0.5rem 0;
+        }
+      }
+    `;
+    
     return (
       <>
-        <style dangerouslySetInnerHTML={{ __html: css }} />
+        <style dangerouslySetInnerHTML={{ __html: css + mobileCSS }} />
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </>
     );
