@@ -5,7 +5,7 @@ async function getData() {
     const res = await fetch('http://45.76.10.9:3000', {
       cache: 'no-store',
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'text/html'
       }
     });
 
@@ -14,8 +14,24 @@ async function getData() {
       return null;
     }
 
-    const data = await res.json();
-    return data;
+    const html = await res.text();
+    
+    // Parse the HTML to extract the data we need
+    const score = html.match(/--score: (\d+)/)?.[1] || '0';
+    const label = html.match(/data-score="\d+">(.*?)</)?.[1] || '';
+    const marketData = html.match(/Market Data[\s\S]*?value">(\d+)%/)?.[1] || '0';
+    const socialSentiment = html.match(/Social Sentiment[\s\S]*?value">(\d+)%/)?.[1] || '0';
+    const onChainActivity = html.match(/On-chain Activity[\s\S]*?value">(\d+)%/)?.[1] || '0';
+    const lastUpdated = html.match(/Last updated: (.*?)</)?.[1] || '';
+
+    return {
+      score,
+      label,
+      marketData,
+      socialSentiment,
+      onChainActivity,
+      lastUpdated
+    };
   } catch (error) {
     console.error('Fetch Error:', error);
     return null;
