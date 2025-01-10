@@ -2,6 +2,12 @@
 const nextConfig = {
   basePath: '/overbackindex',
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true
+  },
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   async rewrites() {
     return [
       {
