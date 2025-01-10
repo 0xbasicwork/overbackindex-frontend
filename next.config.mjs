@@ -4,9 +4,9 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path*',
-        destination: 'http://45.76.10.9:3000/:path*',
-        basePath: false
+        source: '/',
+        destination: 'http://45.76.10.9:3000/',
+        basePath: true
       }
     ];
   }
